@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./post-list.component.css'],
 })
 export class PostListComponent implements OnInit {
-
   posts = [];
   private postsSub: Subscription;
 
@@ -17,12 +16,10 @@ export class PostListComponent implements OnInit {
   constructor(public postsService: PostsService) {}
 
   ngOnInit(): void {
-
     this.posts = this.postsService.getPosts();
-    this.postsService.getPostUpdateListener()
-      .subscribe(
-        (posts:Post[]) =>{
-        this.posts=posts;
+    this.postsService.getPostUpdateListener().subscribe(
+      (posts: Post[]) => {
+        this.posts = posts;
       }
       // ,
       // () =>{
@@ -32,10 +29,13 @@ export class PostListComponent implements OnInit {
       //   //finished
       // },
     );
-
   }
 
-  ngOnDestroy(){
+  onDelete(postId: string) {
+    this.postsService.deletePost(postId);
+  }
+
+  ngOnDestroy() {
     this.postsSub.unsubscribe(); //prevents memory leaks
   }
 }
