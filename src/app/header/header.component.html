@@ -1,3 +1,9 @@
-<mat-toolbar
-color="primary"
->M.E.A.N. View</mat-toolbar>
+<mat-toolbar color="primary">
+    <span><a routerLink="/">M.E.A.N. View</a> </span>
+    <span class="spacer"></span>
+    <ul>
+        <li>
+            <a mat-button routerLink="/create" routerLinkActive = "mat-accent"> New post</a>
+        </li>
+    </ul>
+</mat-toolbar>
